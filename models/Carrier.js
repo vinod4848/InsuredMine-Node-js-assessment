@@ -7,7 +7,6 @@ const CarrierSchema = new mongoose.Schema({
   state: String,
   zip: String,
   phone: String,
-  website: String,
   policies: [
     {
       policyNumber: String,

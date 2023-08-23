@@ -2,8 +2,14 @@ const express = require("express");
 const router = express.Router();
 const insuranceCarrierController = require("../controllers/carrierController");
 
-router.post("/", insuranceCarrierController.createInsuranceCarrier);
+router.post(
+  "/createCarrier",
+  insuranceCarrierController.createInsuranceCarrier
+);
 
-router.get("/", insuranceCarrierController.getAllInsuranceCarriers);
+router.get(
+  "/createCarrier",
+  insuranceCarrierController.getAllInsuranceCarriers
+);
 
 module.exports = router;
