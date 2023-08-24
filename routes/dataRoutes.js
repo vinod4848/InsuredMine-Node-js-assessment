@@ -5,7 +5,7 @@ const fs = require("fs");
 const router = express.Router();
 const upload = require("../config/upload");
 
-const Data = require("../models/data");
+const Data = require("../models/Data");
 
 router.post("/upload", upload.single("file"), (req, res) => {
   const filePath = req.file.path;
