@@ -79,5 +79,34 @@ exports.deletePolicy = async (req, res) => {
       .json({ error: "An error occurred while deleting the policy." });
   }
 };
+exports.searchBypolicyNumber = async (req, res) => {
+  try {
+    const { policyNumber } = req.query;
+    const policies = await Policy.find({
+      policyNumber: { $regex: policyNumber, $options: "i" },
+    }).exec();
+    res.json(policies);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "An error occurred while searching for policies." });
+  }
+};
 
-  
+exports.aggregatePoliciesByPolicyType = async (req, res) => {
+  try {
+    const aggregateData = await Policy.aggregate([
+      {
+        $group: {
+          _id: "$policyType",
+          count: { $sum: 1 },
+        },
+      },
+    ]);
+    res.json(aggregateData);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "An error occurred while aggregating policies." });
+  }
+};
